@@ -12,10 +12,4 @@ categories = ["template-engine", "value-formatting", "text-processing"]
 
 
 [dependencies]
-stri_proc = { path = "../stri_proc" }
-
-
-[features]
-default = ["sql"]
-no_dflt_impls = []
-sql = []
+stri_proc = { version = "0.1.0" }

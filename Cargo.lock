@@ -24,12 +24,23 @@ dependencies = [
 name = "stri"
 version = "0.1.0"
 dependencies = [
- "stri_proc",
+ "stri_proc 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "stri_proc"
 version = "0.1.0"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "stri_proc"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8f7ec769aeab2a83777ff8b07e0db84a00244a3ff58acafa9c08f208d212de5d"
 dependencies = [
  "proc-macro2",
  "quote",
