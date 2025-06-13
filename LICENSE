@@ -1,0 +1,119 @@
+Ethical Use License (EUL)
+
+Version 1.0
+Preamble
+
+This software is provided to promote innovation, education, and positive contributions to society. To ensure its responsible use, the following terms and conditions apply. By using, modifying, or distributing this software, you agree to comply with these terms.
+
+1. Grant of License
+
+Subject to the conditions outlined in this license, the licensor grants you a worldwide, royalty-free, non-exclusive license to:
+
+  (a)  Use, copy, and distribute the software for personal, educational, or commercial purposes.
+  (b)  Modify the software and create derivative works, provided all terms and restrictions in this license are upheld.
+  (c)  Distribute derivative works under the same license, ensuring all terms and conditions are preserved.
+
+2. Prohibited Uses
+
+The software, including derivative works, may not be used for:
+
+  (a) Unethical Activities
+
+  Activities that violate principles outlined in the Universal Declaration of Human Rights (Articles 3, 5, 12–14) or the UN Guiding Principles on Business and Human Rights , including but not limited to:
+
+    ● Causing demonstrable harm to individuals, communities, or ecosystems as defined under the Paris Agreement.
+    ● Spreading demonstrably false information that endangers public health or safety (per WHO guidelines ).
+    ● Promoting hatred based on protected attributes (race, religion, gender, etc.) as defined under UN CERD.
+
+  (b) Human Rights Violations
+
+  Any activity that violates internationally recognized human rights, including:
+
+    ● Unlawful surveillance or data collection infringing on privacy rights (e.g., targeting individuals without consent or legal basis).
+    ● Enabling systems that discriminate or oppress individuals or groups, including AI systems violating UN Guiding Principles on Discrimination.
+
+  (c) Military Applications
+
+  The development, production, or control of weapons or military systems , including autonomous weapons or systems designed for warfare.
+  Exclusion : Non-combat military uses (e.g., disaster response, demining) are permitted only if explicitly approved in writing by the licensor.
+
+  (d) Pornographic Material
+
+  The creation, distribution, or facilitation of all forms of pornographic material, regardless of jurisdictional legality. This includes:
+
+    ● Content involving sexual acts, nudity, or sexually suggestive material.
+    ● Technologies enabling synthetic media (e.g., deepfakes) for pornographic purposes.
+
+  (e) Illegal Activities
+
+  Any activity that violates applicable laws or regulations in the jurisdiction where the software is used. 3. Modifications and Derivative Works
+
+    ● Any modifications or derivative works must retain this license in full.
+    ● Derivative works must include a prominent notice stating:
+      "This work is derived from "stri", originally licensed under the Ethical Use License (EUL v1.0)." 
+
+4. Termination
+
+This license terminates automatically if:
+
+  (a)  The software is used in violation of Section 2 (Prohibited Uses).
+  (b)  Required notices, attributions, or license terms are removed or altered.
+
+Cure Period : For violations other than Sections 2(c) or 2(d), termination may be delayed for 30 days to allow remediation.
+
+Upon termination, you must cease all use, distribution, and modification of the software.
+
+5. Disclaimer of Warranty
+
+This software is provided "as is," without warranty of any kind, express or implied, including merchantability, fitness for a particular purpose, or non-infringement. The licensor is not liable for damages arising from its use.
+
+6. Governing Law
+
+This license is governed by the laws of Germany . Disputes shall be resolved in the courts of Berlin, Germany , or via arbitration under the Berlin Rules of International Commercial Arbitration at the licensor’s discretion.
+
+7. Enforcement
+
+The licensor reserves the right to pursue legal action under German law. Enforcement may involve international legal principles where necessary.
+
+8. Attribution
+
+All copies or substantial portions of the software must include:
+
+  ● A copy of the full "Ethical Use License" (EUL v1.0) in a `LICENSE` file at the root of the project.
+  ● Prominent attribution to the original author in at least one of the following locations:
+    - The `README` file (if present).
+    - The `NOTICE` file (if present).
+    - Accompanying documentation (e.g., user manuals, technical guides, or project websites).
+  ● If license-related text appears in source code comments or metadata (e.g., `"Licensed under..."`), it must include the original author’s attribution and a reference to the full license text.
+
+Requirements for Attribution
+
+(a) Full License Inclusion
+  ● The `LICENSE` file must contain the entire text of the "Ethical Use License" (EUL v1.0) without modification.
+
+(b) Additional Files (if present)  
+  ● If the project includes a `README` or `NOTICE` file, they must contain a clear statement such as:  
+    "This software was originally created by "stri" under the Ethical Use License (EUL v1.0)."
+
+(c) Source Code References
+  ● Example notice in code comments (python code):
+    # Licensed under the Ethical Use License (EUL v1.0).
+    # Original author: [Original Author Name]
+
+(d) No Alteration or Removal:  
+  ● Attribution notices and license text may not be removed, modified, or obscured in any distributed version of the software.  
+     
+9. Definitions
+
+  ● Software: The original work and accompanying files, documentation, or assets.  
+  ● Derivative Works: Modifications, extensions, or new works based on the software.  
+  ● Unethical Activities: As defined in Section 2(a), anchored to international frameworks.
+  ● Pornographic Material: All content involving sexual acts, nudity, or sexually suggestive material, irrespective of jurisdictional legality.
+
+10. Versioning
+
+The licensor may update this license to address new ethical or legal challenges. Revised versions apply only to future distributions; prior users may continue under earlier terms unless prohibited by law.
+
+11. Open Source Notice
+
+This license does not meet the Open Source Initiative (OSI) definition due to ethical restrictions. It prioritizes societal responsibility over unfettered use.

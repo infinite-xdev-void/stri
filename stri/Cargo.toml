@@ -1,0 +1,21 @@
+[package]
+name = "stri"
+description = "string interpolation procedural macro"
+version = "0.1.0"
+edition = "2024"
+authors = ["Marwan Hilal <marwan.hilal.dev@gmail.com>"]
+license-file = "LICENSE"
+rust-version = "1.85"
+repository = "https://github.com/infinite-xdev-void/stri"
+keywords = ["str", "interpolation", "text", "format", "sql"]
+categories = ["template-engine", "value-formatting", "text-processing"]
+
+
+[dependencies]
+stri_proc = { path = "../stri_proc" }
+
+
+[features]
+default = ["sql"]
+no_dflt_impls = []
+sql = []
