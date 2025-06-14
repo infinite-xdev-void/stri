@@ -33,6 +33,7 @@ where
         = Owned
     where
         Self: 'a;
+    #[inline(always)]
     fn to_interpolator(&self) -> Self::Out<'_> {
         Owned::new(self.to_rfc3339())
     }
@@ -51,7 +52,7 @@ impl ToInterpolator<{ STR }> for Month {
         = Refr<'static>
     where
         Self: 'a;
-
+    #[inline(always)]
     fn to_interpolator(&self) -> Self::Out<'_> {
         Refr::new(self.name())
     }
