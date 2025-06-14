@@ -1,4 +1,16 @@
+//
+//
+//
+
 use stri::{si, sql};
+
+//
+//
+//
+//
+//
+//
+//
 
 #[test]
 fn test() {
@@ -40,5 +52,35 @@ fn test() {
             "INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {~html note})"
         ),
         r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, '[&#39; &#34; &gt; &lt; &amp;]')"#,
+    );
+}
+
+//
+//
+//
+//
+//
+//
+//
+
+#[cfg(feature = "chrono")]
+#[test]
+fn chrono() {
+    use chrono::NaiveDateTime;
+
+    //
+    //
+    //
+
+    let dt = NaiveDateTime::parse_from_str("2015-09-05 23:56:04", "%Y-%m-%d %H:%M:%S").unwrap();
+
+    assert_eq!(
+        si!("date and time is: {dt}"),
+        "date and time is: 2015-09-05 23:56:04"
+    );
+
+    assert_eq!(
+        sql!("SELECT {dt}::DATETIME AS date_time"),
+        "SELECT '2015-09-05 23:56:04'::DATETIME AS date_time"
     );
 }
