@@ -47,6 +47,14 @@ impl ToInterpolator<{ crate::STR }> for &str {
 //
 //
 
+//
+//
+//
+//
+//
+//
+//
+
 crate::impl_to_interpolator!(
     crate::STR;
     u8,
@@ -65,3 +73,14 @@ crate::impl_to_interpolator!(
     f32,
     f64
 );
+
+//
+//
+//
+//
+//
+//
+//
+
+#[cfg(feature = "impl-chrono")]
+mod impl_chrono;
