@@ -82,5 +82,5 @@ crate::impl_to_interpolator!(
 //
 //
 
-#[cfg(feature = "impl-chrono")]
+#[cfg(feature = "chrono")]
 mod impl_chrono;

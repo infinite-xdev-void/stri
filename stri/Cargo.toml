@@ -16,4 +16,4 @@ stri_proc = { version = "0.1.0" }
 chrono = { version = "0.4", optional = true }
 
 [features]
-impl-chrono = ["chrono"]
+default = ["chrono"]
