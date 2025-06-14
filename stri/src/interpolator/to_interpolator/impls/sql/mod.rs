@@ -89,3 +89,14 @@ crate::impl_to_interpolator!(
     f32,
     f64
 );
+
+//
+//
+//
+//
+//
+//
+//
+
+#[cfg(feature = "chrono")]
+mod impl_chrono;
