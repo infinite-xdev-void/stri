@@ -3,8 +3,7 @@
 //
 
 use chrono::{
-    DateTime, Duration, FixedOffset, Month, NaiveDate, NaiveDateTime, NaiveTime, OutOfRange,
-    TimeZone, Utc, Weekday, WeekdaySet,
+    DateTime, Duration, FixedOffset, NaiveDate, NaiveDateTime, NaiveTime, TimeZone, Weekday,
 };
 
 //
@@ -28,6 +27,7 @@ use crate::{Owned, ToInterpolator};
 impl<Tz> ToInterpolator<{ crate::SQL }> for DateTime<Tz>
 where
     Tz: TimeZone,
+    <Tz as TimeZone>::Offset: std::fmt::Display,
 {
     type Out<'a>
         = Owned
@@ -51,7 +51,30 @@ where
 //
 //
 
-impl ToInterpolator<{ crate::SQL }> for Month {
+crate::impl_to_interpolator!(SQL; NaiveDate, NaiveDateTime, NaiveTime, Duration, FixedOffset, Weekday);
+
+//
+//
+//
+//
+//
+//
+//
+
+/* use chrono::{Month,
+OutOfRange,
+Utc,
+WeekdaySet,} */
+
+//
+//
+//
+//
+//
+//
+//
+
+/* impl ToInterpolator<{ crate::SQL }> for Month {
     type Out<'a>
         = Owned
     where
@@ -66,14 +89,10 @@ impl ToInterpolator<{ crate::SQL }> for Month {
         s.push('\'');
         Owned::new(s)
     }
-}
+} */
 
 //
 //
 //
-//
-//
-//
-//
 
-crate::impl_to_interpolator!(SQL; NaiveDate, NaiveDateTime, NaiveTime, Duration, FixedOffset, OutOfRange, Utc, Weekday,WeekdaySet);
+/* crate::impl_to_interpolator!(SQL; OutOfRange, Utc, WeekdaySet); */

@@ -3,8 +3,7 @@
 //
 
 use chrono::{
-    DateTime, Duration, FixedOffset, Month, NaiveDate, NaiveDateTime, NaiveTime, OutOfRange,
-    TimeZone, Utc, Weekday, WeekdaySet,
+    DateTime, Duration, FixedOffset, NaiveDate, NaiveDateTime, NaiveTime, TimeZone, Weekday,
 };
 
 //
@@ -15,6 +14,7 @@ use chrono::{
 //
 //
 
+#[allow(unused_imports)]
 use crate::{Owned, Refr, STR, ToInterpolator};
 
 //
@@ -28,6 +28,7 @@ use crate::{Owned, Refr, STR, ToInterpolator};
 impl<Tz> ToInterpolator<{ STR }> for DateTime<Tz>
 where
     Tz: TimeZone,
+    <Tz as TimeZone>::Offset: std::fmt::Display,
 {
     type Out<'a>
         = Owned
@@ -47,6 +48,26 @@ where
 //
 //
 
+crate::impl_to_interpolator!(STR; NaiveDate, NaiveDateTime, NaiveTime, Duration, FixedOffset, Weekday);
+
+//
+//
+//
+//
+//
+//
+//
+
+/*
+use chrono::{
+    //
+    Month,
+    OutOfRange,
+    Utc,
+    WeekdaySet,
+}; */
+
+/*
 impl ToInterpolator<{ STR }> for Month {
     type Out<'a>
         = Refr<'static>
@@ -58,12 +79,4 @@ impl ToInterpolator<{ STR }> for Month {
     }
 }
 
-//
-//
-//
-//
-//
-//
-//
-
-crate::impl_to_interpolator!(STR; NaiveDate, NaiveDateTime, NaiveTime, Duration, FixedOffset, OutOfRange, Utc, Weekday,WeekdaySet);
+crate::impl_to_interpolator!(STR; OutOfRange, Utc,WeekdaySet); */
