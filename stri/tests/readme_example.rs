@@ -2,7 +2,7 @@
 //
 //
 
-use stri::{si, sql};
+use stri::{file, si, sql};
 
 //
 //
@@ -53,6 +53,32 @@ fn test() {
         ),
         r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, '[&#39; &#34; &gt; &lt; &amp;]')"#,
     );
+
+    //
+    //
+    //
+
+    // `file!` example
+
+    let note = r#"My friend's name is Ali"#;
+
+    //
+    //
+    //
+
+    assert_eq!(
+        file!("tests/example.txt"),
+        "my name is Ahmed, i am 63 years old and my height is 180.5",
+    );
+
+    //
+    //
+    //
+
+    assert_eq!(
+        file!("tests/example.sql"),
+        r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, 'My friend''s name is Ali')"#,
+    );
 }
 
 //
@@ -80,7 +106,7 @@ fn chrono() {
     );
 
     assert_eq!(
-        sql!("SELECT {dt}::DATETIME AS date_time"),
-        "SELECT '2015-09-05 23:56:04'::DATETIME AS date_time"
+        sql!("SELECT {dt}::TIMESTAMP AS date_time"),
+        "SELECT '2015-09-05 23:56:04'::TIMESTAMP AS date_time"
     );
 }

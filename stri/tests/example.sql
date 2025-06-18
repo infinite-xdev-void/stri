@@ -1,0 +1,1 @@
+INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {note})
