@@ -1,0 +1,8 @@
+[package]
+name = "tests"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+stri = { path = "../stri" }
+stri_proc = { path = "../stri_proc" }
