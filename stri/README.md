@@ -1,6 +1,6 @@
 # stri
 
-`stri` is a procedural macro for string interpolation.
+`stri` is a set of procedural macros for string interpolation.
 
 ## Usage Example
 
@@ -51,7 +51,14 @@ fn main(){
   //
   //
 
-  // in case of `cargo add stri -F chrono`
+  // If the `chrono` feature is enabled
+
+  // Note: chrono::{
+  //    DateTime, Duration, FixedOffset, NaiveDate,
+  //    NaiveDateTime, NaiveTime, TimeZone, Weekday
+  // };
+  // are the only supported types
+
   use chrono::NaiveDateTime;
 
   let dt = NaiveDateTime::parse_from_str("2015-09-05 23:56:04", "%Y-%m-%d %H:%M:%S").unwrap();
@@ -62,8 +69,52 @@ fn main(){
   );
 
   assert_eq!(
-      sql!("SELECT {dt}::DATETIME AS date_time"),
-      "SELECT '2015-09-05 23:56:04'::DATETIME AS date_time"
+      sql!("SELECT {dt}::TIMESTAMP AS date_time"),
+      "SELECT '2015-09-05 23:56:04'::TIMESTAMP AS date_time"
+  );
+}
+```
+
+### `file!` macro
+
+For longer `string` or `sql` content, you can externalize it into a separate file and use the `file!` macro to include it. The `file!` macro intelligently applies the logic of the `si!` or `sql!` macros internally, determined by the extension of the specified file.
+
+**File: `src/example.txt`**
+
+```txt
+my name is {name}, i am {age} years old and my height is {height}
+```
+
+**File: `src/example.sql`**
+
+```sql
+INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {note})
+```
+
+```rust
+use stri::file;
+fn main(){
+  let name = "Ahmed";
+  let age = 63;
+  let height = 180.5;
+  let note = r#"My friend's name is Ali"#;
+
+  //
+  //
+  //
+
+  assert_eq!(
+    file!("src/example.txt"),
+    "my name is Ahmed, i am 63 years old and my height is 180.5",
+  );
+
+  //
+  //
+  //
+
+  assert_eq!(
+    file!("src/example.sql"),
+    r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, 'My friend''s name is Ali')"#,
   );
 }
 ```
@@ -74,4 +125,4 @@ If you encounter any issues or want to suggest a feature, please open an [issue]
 
 ## License Information
 
-"stri" is licensed under Ethical Use License (EUL v1.0). see LICENSE for full license details.
+"stri" is licensed under Ethical Use License (EUL v1.0). see [LICENSE](https://github.com/infinite-xdev-void/stri/blob/main/LICENSE) for full license details.
