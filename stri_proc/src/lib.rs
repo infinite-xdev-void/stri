@@ -68,7 +68,7 @@ use crate::format::{Sql, Str};
 
 #[proc_macro]
 pub fn si(i: Ts) -> Ts {
-    From::from(build_str::<Str>(parse_macro_input!(i as LitStr)))
+    From::from(build_str::<Str>(parse_macro_input!(i as LitStr).value()))
 }
 
 //
@@ -77,7 +77,37 @@ pub fn si(i: Ts) -> Ts {
 
 #[proc_macro]
 pub fn sql(i: Ts) -> Ts {
-    From::from(build_str::<Sql>(parse_macro_input!(i as LitStr)))
+    From::from(build_str::<Sql>(parse_macro_input!(i as LitStr).value()))
+}
+
+//
+//
+//
+
+#[proc_macro]
+pub fn file(f: Ts) -> Ts {
+    let manifest_dir = std::env::var("CARGO_MANIFEST_DIR")
+        .expect("CARGO_MANIFEST_DIR not set. This macro should be compiled by Cargo.");
+
+    //
+    //
+    //
+
+    let file_name = parse_macro_input!(f as LitStr).value();
+
+    let path = std::path::PathBuf::from(manifest_dir).join(&file_name);
+
+    //
+    //
+    //
+
+    let file = std::fs::read_to_string(&path).unwrap();
+
+    if file_name.ends_with(".sql") {
+        From::from(build_str::<Sql>(file))
+    } else {
+        From::from(build_str::<Str>(file))
+    }
 }
 
 //
@@ -88,14 +118,13 @@ pub fn sql(i: Ts) -> Ts {
 //
 //
 
-fn build_str<F: Format>(i: LitStr) -> Ts2 {
+fn build_str<F: Format>(val: String) -> Ts2 {
     //
     //
     //
 
     let mut parts = Parts::<F>::new();
 
-    let val = i.value();
     let bs = val.as_bytes();
 
     let mut s = Vec::new();
