@@ -110,3 +110,30 @@ fn chrono() {
         "SELECT '2015-09-05 23:56:04'::TIMESTAMP AS date_time"
     );
 }
+
+//
+//
+//
+//
+//
+//
+//
+
+#[cfg(feature = "rust_decimal")]
+#[test]
+fn rust_decimal() {
+    use rust_decimal::Decimal;
+
+    //
+    //
+    //
+
+    let d = Decimal::new(1225, 2); // 12.25;
+
+    assert_eq!(si!("Decimal is: {d}"), "Decimal is: 12.25");
+
+    assert_eq!(
+        sql!("SELECT {d}::DECIMAL AS d"),
+        "SELECT 12.25::DECIMAL AS d"
+    );
+}

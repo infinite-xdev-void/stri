@@ -100,3 +100,14 @@ crate::impl_to_interpolator!(
 
 #[cfg(feature = "chrono")]
 mod impl_chrono;
+
+//
+//
+//
+//
+//
+//
+//
+
+#[cfg(feature = "rust_decimal")]
+mod impl_rust_decimal;
