@@ -98,6 +98,8 @@ fn main(){
 
 For longer `string` or `sql` content, you can externalize it into a separate file and use the `file!` macro to include it. The `file!` macro intelligently applies the logic of the `si!` or `sql!` macros internally, determined by the extension of the specified file.
 
+#### Example
+
 **File: `src/example.txt`**
 
 ```txt
@@ -135,6 +137,78 @@ fn main(){
     file!("src/example.sql"),
     r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, 'My friend''s name is Ali')"#,
   );
+}
+```
+
+### `dir!` macro
+
+The `dir!` macro allows you to concatenate the content of multiple files within a specified directory. It reads all files only at the first level of the given directory, joins their content with a newline character (`\n`), and intelligently processes them based on the file extensions within the directory:
+
+- **If all files have the .sql extension:** `sql!` macro's logic will be applied.
+
+- **Otherwise:** `si!` macro's logic will be applied.
+
+**Note:** The order in which files are read and concatenated is dependent on the the behavior of `std::fs::ReadDir`.
+
+#### Example
+
+**Dir: `src`**
+
+src/
+├── sql
+│ ├── 1_insert.sql
+│ └── 2_delete.sql
+├── txt
+│ ├── 1_name.txt
+│ └── 2_age.txt
+└── main.rs
+
+**File: `src/sql/1_insert.sql`**
+
+```sql
+INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {note});
+```
+
+**File: `src/sql/2_insert.sql`**
+
+```sql
+DELETE FROM users WHERE name={name};
+```
+
+**File: `src/txt/1_name.txt`**
+
+```sql
+My name is {name}
+```
+
+**File: `src/txt/2_age.txt`**
+
+```sql
+I am {age} years old
+```
+
+**File `src/main.rs`**
+
+```rust
+use stri::dir;
+fn main(){
+  let name = "Ahmed";
+  let age = 63;
+
+  //
+  //
+  //
+
+  assert_eq!(
+      dir!("src/sql"),
+      "INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, 'My friend''s name is Ali');\nDELETE FROM users WHERE name='Ahmed';"
+   );
+
+   //
+   //
+   //
+
+   assert_eq!(dir!("src/txt"), "My name is Ahmed\nI am 63 years old")
 }
 ```
 
