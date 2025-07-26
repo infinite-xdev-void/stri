@@ -481,16 +481,16 @@ checksum = "e3a9fe34e3e7a50316060351f37187a3f546bce95496156754b601a5fa71b76e"
 
 [[package]]
 name = "stri"
-version = "0.4.0"
+version = "0.6.0"
 dependencies = [
  "chrono",
  "rust_decimal",
- "stri_proc 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "stri_proc 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "stri_proc"
-version = "0.2.0"
+version = "0.4.0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -499,9 +499,9 @@ dependencies = [
 
 [[package]]
 name = "stri_proc"
-version = "0.2.0"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9fc20f0ffe5071631ccbcd5f181f5c242cf90343b631278c049ca00aa8049380"
+checksum = "ff7cc9d01b1386d01a696ec736d3d1954a7a81b41d40874fe71ff10abcd572e0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -541,7 +541,7 @@ name = "tests"
 version = "0.1.0"
 dependencies = [
  "stri",
- "stri_proc 0.2.0",
+ "stri_proc 0.4.0",
 ]
 
 [[package]]
