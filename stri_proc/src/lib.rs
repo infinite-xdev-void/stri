@@ -84,9 +84,8 @@ pub fn sql(i: Ts) -> Ts {
 
 #[proc_macro]
 pub fn file(f: Ts) -> Ts {
-   let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").expect(
-      "CARGO_MANIFEST_DIR not set. This macro should be compiled by Cargo.",
-   );
+   let manifest_dir = std::env::var("CARGO_MANIFEST_DIR")
+      .expect("CARGO_MANIFEST_DIR not set. This macro should be compiled by Cargo.");
 
    //
    //
@@ -118,9 +117,8 @@ pub fn file(f: Ts) -> Ts {
 //
 #[proc_macro]
 pub fn dir(d: Ts) -> Ts {
-   let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").expect(
-      "CARGO_MANIFEST_DIR not set. This macro should be compiled by Cargo.",
-   );
+   let manifest_dir = std::env::var("CARGO_MANIFEST_DIR")
+      .expect("CARGO_MANIFEST_DIR not set. This macro should be compiled by Cargo.");
 
    let dir_name = parse_macro_input!(d as LitStr).value();
 
@@ -130,8 +128,7 @@ pub fn dir(d: Ts) -> Ts {
    //
    //
 
-   let (val, is_sql) =
-      concat_first_lvl_files_in_dir(std::fs::read_dir(path).unwrap());
+   let (val, is_sql) = concat_first_lvl_files_in_dir(std::fs::read_dir(path).unwrap());
 
    //
 
@@ -166,8 +163,7 @@ fn concat_first_lvl_files_in_dir(dir: ReadDir) -> (String, bool) {
             all_sql = false;
          }
 
-         contents
-            .push(std::fs::read_to_string(path).unwrap().trim().to_owned());
+         contents.push(std::fs::read_to_string(path).unwrap().trim().to_owned());
       };
    }
 

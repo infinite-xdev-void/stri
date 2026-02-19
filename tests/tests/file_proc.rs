@@ -10,14 +10,14 @@ use stri_proc::file;
 
 #[test]
 fn file_txt() {
-    let name = "Ahmed";
-    let age = 63;
-    let height = 180.5;
+   let name = "Ahmed";
+   let age = 63;
+   let height = 180.5;
 
-    assert_eq!(
-        file!("tests/file_proc/file.txt"),
-        "my name is Ahmed, i am 63 years old and my height is 180.5",
-    )
+   assert_eq!(
+      file!("tests/file_proc/file.txt"),
+      "my name is Ahmed, i am 63 years old and my height is 180.5",
+   )
 }
 
 //
@@ -27,16 +27,14 @@ fn file_txt() {
 //
 //
 //
-
 #[test]
 fn file_sql() {
-    let name = "Ahmed";
-    let age = 63;
-    let height = 180.5;
-    let note = r#"[' " > < &]"#;
+   let name = "Ahmed";
+   let age = 63u8;
+   let height = 180.5f32;
 
-    assert_eq!(
-        file!("tests/file_proc/file.sql"),
-        r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, '[&#39; &#34; &gt; &lt; &amp;]')"#,
-    );
+   assert_eq!(
+      file!("tests/file_proc/file.sql"),
+      r#"INSERT INTO users (name, age, height) VALUES ('Ahmed', 63, 180.5)"#,
+   );
 }

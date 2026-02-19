@@ -35,19 +35,6 @@ fn main(){
   //
   //
   //
-
-  let note = r#"[' " > < &]"#; // these are html special characters: ' " > < &
-
-  // if you want to sanitize html special characters then add `~html` as a suffix to
-  // the variable name (works with `&str` and `String` only)
-  assert_eq!(
-    sql!("INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {~html note})"),
-    r#"INSERT INTO users (name, age, height, note) VALUES ('Ahmed', 63, 180.5, '[&#39; &#34; &gt; &lt; &amp;]')"#,
-  );
-
-  //
-  //
-  //
   //
   //
 
@@ -216,6 +203,11 @@ fn main(){
 
 If you encounter any issues or want to suggest a feature, please open an [issue](https://github.com/infinite-xdev-void/stri/issues) in github.
 
-## License Information
+## License
 
-"stri" is licensed under Ethical Use License (EUL v1.0). see [LICENSE](https://github.com/infinite-xdev-void/stri/blob/main/LICENSE) for full license details.
+This project is licensed under either of
+
+* [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* [MIT License](https://opensource.org/licenses/MIT)
+
+at your option.

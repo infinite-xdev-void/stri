@@ -4,7 +4,7 @@ description = "string interpolation procedural macro"
 version = "0.6.0"
 edition = "2024"
 authors = ["Marwan Hilal <marwan.hilal.dev@gmail.com>"]
-license-file = "LICENSE"
+license = "MIT OR Apache-2.0"
 rust-version = "1.85"
 repository = "https://github.com/infinite-xdev-void/stri"
 keywords = ["str", "interpolation", "text", "format", "sql"]
@@ -12,8 +12,10 @@ categories = ["template-engine", "value-formatting", "text-processing"]
 
 
 [dependencies]
-stri_proc = { version = "0.4.0" }
+stri_proc = { path = "../stri_proc" }
 chrono = { version = "0.4", optional = true }
 rust_decimal = { version = "1.36", optional = true }
+zmij = "1.0.21"
+itoa = "1.0.17"
 
 [features]

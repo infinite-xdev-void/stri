@@ -82,12 +82,12 @@ impl<F: Format> Parts<F> {
          Some(ident) => {
             extend(
                &mut self.v_lens,
-               quote! {+ ::stri::Interpolator::len(&#ident)},
+               quote! {+ ::stri::Interpolate::len(&#ident)},
             );
 
             extend(
                &mut self.pushs,
-               quote! {::stri::Interpolator::interpolate(&#ident, &mut s);},
+               quote! {::stri::Interpolate::interpolate(&#ident, &mut s);},
             );
          }
 
@@ -102,16 +102,16 @@ impl<F: Format> Parts<F> {
 
             let expr = unsafe { core::str::from_utf8_unchecked(expr) };
 
-            let var_def = F::var_def(&ident, expr.trim());
+            let var_def = F::var_def(&ident, expr);
 
             extend(&mut self.vars, var_def);
             extend(
                &mut self.v_lens,
-               quote! {+ ::stri::Interpolator::len(&#ident)},
+               quote! {+ ::stri::Interpolate::len(&#ident)},
             );
             extend(
                &mut self.pushs,
-               quote! {::stri::Interpolator::interpolate(&#ident, &mut s);},
+               quote! {::stri::Interpolate::interpolate(&#ident, &mut s);},
             );
             self.v_count += 1;
          }
@@ -186,12 +186,18 @@ impl<F: Format> Parts<F> {
       //
       //
 
+      let imports = F::imports();
+
       quote! {
-        {#vars
+        {
+           #imports
 
-        #pushs
+           #vars
 
-        s}
+           #pushs
+
+           s
+        }
       }
    }
 }
@@ -200,10 +206,3 @@ impl<F: Format> Parts<F> {
 pub fn extend(target: &mut Ts2, source: Ts2) {
    target.extend(core::iter::once(source));
 }
-
-/*
-  1- strs == 1, vars == 0
-  2- strs == 1, vars == 1
-  3- strs ==
-
-*/

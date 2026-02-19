@@ -1,1 +1,1 @@
-INSERT INTO users (name, age, height, note) VALUES ({name}, {age}, {height}, {~html note})
+INSERT INTO users (name, age, height) VALUES ({name}, {age}, {height})

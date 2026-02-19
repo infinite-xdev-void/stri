@@ -224,9 +224,9 @@ dependencies = [
 
 [[package]]
 name = "itoa"
-version = "1.0.15"
+version = "1.0.17"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "4a5f13b858c8d314ee3e8f639011f7ccefe71f97f96e50151fb991f267928e2c"
+checksum = "92ecc6618181def0457392ccd0ee51198e065e016d1d527a7ac1b6dc7c1f09d2"
 
 [[package]]
 name = "js-sys"
@@ -484,24 +484,15 @@ name = "stri"
 version = "0.6.0"
 dependencies = [
  "chrono",
+ "itoa",
  "rust_decimal",
- "stri_proc 0.4.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "stri_proc",
+ "zmij",
 ]
 
 [[package]]
 name = "stri_proc"
 version = "0.4.0"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.101",
-]
-
-[[package]]
-name = "stri_proc"
-version = "0.4.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ff7cc9d01b1386d01a696ec736d3d1954a7a81b41d40874fe71ff10abcd572e0"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -541,7 +532,7 @@ name = "tests"
 version = "0.1.0"
 dependencies = [
  "stri",
- "stri_proc 0.4.0",
+ "stri_proc",
 ]
 
 [[package]]
@@ -758,3 +749,9 @@ dependencies = [
  "quote",
  "syn 2.0.101",
 ]
+
+[[package]]
+name = "zmij"
+version = "1.0.21"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b8848ee67ecc8aedbaf3e4122217aff892639231befc6a1b58d29fff4c2cabaa"

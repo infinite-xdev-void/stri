@@ -2,6 +2,11 @@
 
 a procedural macro for [stri](https://crates.io/crates/stri) crate. this crate doesn't work alone.
 
-## License Information
+## License
 
-"stri_proc" is licensed under Ethical Use License (EUL v1.0). see LICENSE for full license details.
+This project is licensed under either of
+
+* [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+* [MIT License](https://opensource.org/licenses/MIT)
+
+at your option.
