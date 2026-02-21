@@ -1,0 +1,23 @@
+[package]
+name = "benchs"
+version = "0.1.0"
+edition = "2024"
+
+# In the Cargo.toml of the specific crate you are benchmarking (e.g., my_workspace/my_lib_crate/Cargo.toml)
+
+[dev-dependencies]
+criterion = "0.5" # Use the latest version from
+
+[dependencies]
+chrono = "0.4.43"
+itoa = "1.0.17"
+rand = "0.8.5"
+rust_decimal = "1.40.0"
+stri = {path = "../stri", features = ["rust_decimal", "chrono"]}
+zmij = "1.0.21"
+
+# In the Cargo.toml of the specific crate you are benchmarking
+
+[[bench]]
+name = "benchmark"
+harness = false
