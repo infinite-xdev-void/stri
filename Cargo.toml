@@ -1,3 +1,3 @@
 [workspace]
 resolver = "3"
-members = ["stri", "stri_proc", "tests"]
+members = ["benchs", "stri", "stri_proc", "tests"]
