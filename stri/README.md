@@ -141,14 +141,14 @@ The `dir!` macro allows you to concatenate the content of multiple files within 
 
 **Dir: `src`**
 
-src/
-├── sql
-│ ├── 1_insert.sql
-│ └── 2_delete.sql
-├── txt
-│ ├── 1_name.txt
-│ └── 2_age.txt
-└── main.rs
+src/  
+├── sql  
+│ ├── 1_insert.sql  
+│ └── 2_delete.sql  
+├── txt  
+│ ├── 1_name.txt  
+│ └── 2_age.txt  
+└── main.rs  
 
 **File: `src/sql/1_insert.sql`**
 
