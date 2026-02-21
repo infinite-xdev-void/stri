@@ -97,7 +97,7 @@ impl<F: Format> Parts<F> {
          //
          //
          None => {
-            let ident = format_ident!("v{}", self.v_count);
+            let ident = format_ident!("__v{}", self.v_count);
             self.var_idens.insert(expr.to_vec(), ident.clone());
 
             let expr = unsafe { core::str::from_utf8_unchecked(expr) };

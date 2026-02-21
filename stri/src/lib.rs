@@ -20,6 +20,13 @@ pub mod macros;
 //
 //
 
+mod buffer;
+pub use buffer::*;
+
+//
+//
+//
+
 mod format;
 pub use format::*;
 
@@ -36,6 +43,14 @@ pub use interpolate::*;
 
 mod to_interpolator;
 pub use to_interpolator::*;
+
+//
+//
+//
+
+mod to_interpolator_for;
+#[doc(hidden)]
+pub use to_interpolator_for::*;
 
 //
 //

@@ -2,17 +2,7 @@
 //
 //
 
-use crate::{Sql, Str, ToInterpolator, utils::count_quotes};
-
-//
-//
-//
-//
-//
-//
-//
-
-const QUOTE_BYTE: u8 = b'\'';
+use crate::{Sql, Str, ToInterpolator, constants::QUOTE_BYTE, utils::count_quotes};
 
 //
 //
@@ -25,13 +15,14 @@ const QUOTE_BYTE: u8 = b'\'';
 macro_rules! impl_for_string {
    ($type: ty) => {
       impl ToInterpolator<Sql> for $type {
+         type Buffer = ();
          type Out<'a>
             = String
          where
             Self: 'a;
 
-         #[inline(always)]
-         fn to_interpolator(&self) -> Self::Out<'_> {
+         #[inline]
+         fn to_interpolator(&self, _buf: &mut Self::Buffer) -> Self::Out<'_> {
             let mut vec = Vec::with_capacity(2 + self.len() + count_quotes(self));
             vec.push(QUOTE_BYTE);
 
@@ -51,13 +42,14 @@ macro_rules! impl_for_string {
       }
 
       impl ToInterpolator<Str> for $type {
+         type Buffer = ();
          type Out<'a>
             = &'a str
          where
             Self: 'a;
 
          #[inline(always)]
-         fn to_interpolator<'a>(&'a self) -> Self::Out<'a> {
+         fn to_interpolator(&self, _buf: &mut Self::Buffer) -> Self::Out<'_> {
             self
          }
       }

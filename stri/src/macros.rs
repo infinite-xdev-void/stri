@@ -6,13 +6,14 @@
 macro_rules! impl_to_interpolator_for_output_string {
    ($type: ty) => {
       impl ToInterpolator<Sql> for $type {
+         type Buffer = ();
          type Out<'a>
             = String
          where
             Self: 'a;
 
          #[inline]
-         fn to_interpolator<'a>(&'a self) -> Self::Out<'a> {
+         fn to_interpolator<'a>(&'a self, _buf: &mut Self::Buffer) -> Self::Out<'a> {
             let s = self.to_string();
             let mut out = String::with_capacity(2 + s.len());
             out.push(QUOTE);
@@ -23,13 +24,14 @@ macro_rules! impl_to_interpolator_for_output_string {
       }
 
       impl ToInterpolator<Str> for $type {
+         type Buffer = ();
          type Out<'a>
             = String
          where
             Self: 'a;
 
          #[inline(always)]
-         fn to_interpolator<'a>(&'a self) -> Self::Out<'a> {
+         fn to_interpolator<'a>(&'a self, _buf: &mut Self::Buffer) -> Self::Out<'a> {
             self.to_string()
          }
       }

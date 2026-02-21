@@ -15,20 +15,22 @@ use crate::{Sql, Str, ToInterpolator};
 macro_rules! impl_int {
    ($type: ty) => {
       impl ToInterpolator<Sql> for $type {
-         type Out<'a> = String;
+         type Buffer = ::itoa::Buffer;
+         type Out<'a> = &'a str;
 
          #[inline(always)]
-         fn to_interpolator(&self) -> Self::Out<'_> {
-            ::itoa::Buffer::new().format(*self).to_string()
+         fn to_interpolator<'a>(&'a self, buf: &'a mut Self::Buffer) -> Self::Out<'a> {
+            buf.format(*self)
          }
       }
 
       impl ToInterpolator<Str> for $type {
-         type Out<'a> = String;
+         type Buffer = ::itoa::Buffer;
+         type Out<'a> = &'a str;
 
          #[inline(always)]
-         fn to_interpolator(&self) -> Self::Out<'_> {
-            ::itoa::Buffer::new().format(*self).to_string()
+         fn to_interpolator<'a>(&'a self, buf: &'a mut Self::Buffer) -> Self::Out<'a> {
+            buf.format(*self)
          }
       }
    };
@@ -55,20 +57,22 @@ impl_int!(isize);
 macro_rules! impl_float {
    ($type: ty) => {
       impl ToInterpolator<Sql> for $type {
-         type Out<'a> = String;
+         type Buffer = ::zmij::Buffer;
+         type Out<'a> = &'a str;
 
          #[inline(always)]
-         fn to_interpolator(&self) -> Self::Out<'_> {
-            zmij::Buffer::new().format(*self).to_string()
+         fn to_interpolator<'a>(&'a self, buf: &'a mut Self::Buffer) -> Self::Out<'a> {
+            buf.format(*self)
          }
       }
 
       impl ToInterpolator<Str> for $type {
-         type Out<'a> = String;
+         type Buffer = ::zmij::Buffer;
+         type Out<'a> = &'a str;
 
          #[inline(always)]
-         fn to_interpolator(&self) -> Self::Out<'_> {
-            zmij::Buffer::new().format(*self).to_string()
+         fn to_interpolator<'a>(&'a self, buf: &'a mut Self::Buffer) -> Self::Out<'a> {
+            buf.format(*self)
          }
       }
    };
@@ -82,10 +86,11 @@ impl_float!(f64);
 //
 
 impl ToInterpolator<Sql> for bool {
+   type Buffer = ();
    type Out<'a> = &'a str;
 
    #[inline]
-   fn to_interpolator(&self) -> Self::Out<'_> {
+   fn to_interpolator<'a>(&'a self, _buf: &mut Self::Buffer) -> Self::Out<'a> {
       match self {
          true => "TRUE",
          false => "FALSE",
@@ -94,10 +99,11 @@ impl ToInterpolator<Sql> for bool {
 }
 
 impl ToInterpolator<Str> for bool {
+   type Buffer = ();
    type Out<'a> = &'a str;
 
    #[inline]
-   fn to_interpolator(&self) -> Self::Out<'_> {
+   fn to_interpolator<'a>(&'a self, _buf: &mut Self::Buffer) -> Self::Out<'a> {
       match self {
          true => "true",
          false => "false",
@@ -110,10 +116,11 @@ impl ToInterpolator<Str> for bool {
 //
 
 impl ToInterpolator<Sql> for char {
+   type Buffer = ();
    type Out<'a> = String;
 
    #[inline]
-   fn to_interpolator(&self) -> Self::Out<'_> {
+   fn to_interpolator(&self, _buf: &mut Self::Buffer) -> Self::Out<'_> {
       if self.eq(&'\'') {
          String::from("''''")
       } else {
@@ -126,10 +133,11 @@ impl ToInterpolator<Sql> for char {
 }
 
 impl ToInterpolator<Str> for char {
+   type Buffer = ();
    type Out<'a> = String;
 
-   #[inline(always)]
-   fn to_interpolator(&self) -> Self::Out<'_> {
+   #[inline]
+   fn to_interpolator(&self, _buf: &mut Self::Buffer) -> Self::Out<'_> {
       self.to_string()
    }
 }

@@ -12,7 +12,7 @@ use std::str::FromStr;
 //
 //
 
-use quote::quote;
+use quote::{format_ident, quote};
 
 //
 //
@@ -61,7 +61,7 @@ impl Format for Str {
    #[inline(always)]
    fn imports() -> Ts2 {
       quote! {
-         use ::stri::__private::ToInterpolatorForStr;
+         use ::stri::{ToInterpolatorForStr, Buffer};
       }
    }
 
@@ -73,7 +73,13 @@ impl Format for Str {
             panic!("str: {}\n e: {:?}", expr, e);
          }
       };
-      quote! {let #ident = (#expr).__to_interpolator_for_str(); }
+
+      let buf_ident = format_ident!("{}_buf", ident);
+
+      quote! {
+         let mut #buf_ident = (#expr).__stri_new_buffer();
+         let #ident = (#expr).__stri_to_interpolator_for_str(&mut #buf_ident);
+      }
    }
 }
 
@@ -91,15 +97,19 @@ impl Format for Sql {
    #[inline(always)]
    fn imports() -> Ts2 {
       quote! {
-         use ::stri::__private::ToInterpolatorForSql;
+         use ::stri::{ToInterpolatorForSql, Buffer};
       }
    }
 
    #[inline(always)]
    fn var_def(ident: &Ident, expr: &str) -> Ts2 {
       let expr = Ts2::from_str(expr).unwrap();
+      let buf_ident = format_ident!("{}_buf", ident);
 
-      quote! {let #ident = (#expr).__to_interpolator_for_sql();}
+      quote! {
+         let mut #buf_ident = (#expr).__stri_new_buffer();
+         let #ident = (#expr).__stri_to_interpolator_for_sql(&mut #buf_ident);
+      }
       // match expr.strip_prefix("~html") {
       //     Some(expr) => {
       //         let expr = Ts2::from_str(expr.trim()).unwrap();
